@@ -20,7 +20,7 @@ def log(s):
     os.fsync(logFile.fileno())
 
 def download(tmpFile):
-    response = urllib2.urlopen('http://tbg.iblocklist.com/Lists/ipfilter.dat.gz')
+    response = urllib2.urlopen('https://github.com/DavidMoore/ipfilter/releases/download/lists/ipfilter.dat.gz')
     ipfilterDataGz = response.read()
     response.close()
 
@@ -45,6 +45,8 @@ def update():
                       'Application Support', \
                       'uTorrent')
     added = False
+
+    log('uTorrentDirPath set to \'' + uTorrentDirPath + '\'');
 
     if os.path.isdir(uTorrentDirPath):
         targetFile = open(os.path.join(uTorrentDirPath, 'ipfilter.dat'),'wb')
